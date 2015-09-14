@@ -134,7 +134,7 @@
                 });
                 $(".hapus_button").click(function(){
                     var rekam_id = $(this).attr("id");
-                    alert("haha");
+                    
                     $("#modal_hapus").attr({
                         href: "<?php echo base_url();?>index.php/rekam/hapus/"+rekam_id.substr(6,rekam_id.length),
                     });

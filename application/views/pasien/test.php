@@ -7,12 +7,12 @@
                 <div id="title-breadcrumb-option-demo" class="page-title-breadcrumb">
                     <div class="page-header pull-left">
                         <div class="page-title">
-                            Dokter</div>
+                            Pasien</div>
                     </div>
                     <ol class="breadcrumb page-breadcrumb pull-right">
                         <li><i class="fa fa-home"></i>&nbsp;<a href="dashboard.html">Home</a>&nbsp;&nbsp;<i class="fa fa-angle-right"></i>&nbsp;&nbsp;</li>
-                        <li class="hidden"><a href="#">Dokter</a>&nbsp;&nbsp;<i class="fa fa-angle-right"></i>&nbsp;&nbsp;</li>
-                        <li class="active">Dokter</li>
+                        <li class="hidden"><a href="#">Pasien</a>&nbsp;&nbsp;<i class="fa fa-angle-right"></i>&nbsp;&nbsp;</li>
+                        <li class="active">Pasien</li>
                     </ol>
                     <div class="clearfix">
                     </div>
@@ -24,7 +24,7 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-lg-8 col-md-offset-1">
+                <div class="col-lg-10 col-md-offset-1">
                     <div class="panel panel-primary">
                         <div class="panel-heading">Daftar Pasien</div>
                         <!-- /.panel-heading -->
@@ -57,10 +57,11 @@
                                             if($akses!= "dvi")
                                             {
                                                 ?>
-                                                <a href="<?php echo base_url();?>pasien/detail/<?php echo $row->id_pasien;?>" class="btn btn-sm btn-primary">Detail</a>
+                                                <a href="<?php echo base_url();?>pasien/detail/<?php echo $row->id_pasien;?>" class="btn btn-sm btn-primary">Info</a>
                                                 <?php
                                             }
                                         ?>
+                                            <a href="<?php echo base_url();?>pasien/perawatan/<?php echo $row->id_pasien;?>" class="btn btn-sm btn-warning">Perawatan</a>
                                             <a href="<?php echo base_url();?>rekam/record/<?php echo $row->id_pasien;?>" class="btn btn-sm btn-warning">Record</a>
                                             <a href="<?php echo base_url();?>pasien/hapus/<?php echo $row->id_pasien;?>" class="btn btn-sm btn-danger">Hapus</a>
                                         

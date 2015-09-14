@@ -34,4 +34,14 @@ class AjaxController extends CI_Controller {
 		$data['res_gigi'] = $this->m_main->select_where('gigi', $select_gigi);
 		$this->load->view("pasien/detail_rekam", $data);
 	}
+	public function get_detail_perawatan()
+	{
+		$this->load->model('m_main');
+		$select_rawat = array(
+			'id_perawatan' => substr($_POST['id_perawatan'], 7),
+			);
+		$data['res_perawatan'] = $this->m_main->select_where('perawatan', $select_rawat);
+		$this->load->view("pasien/detail_perawatan", $data);
+
+	}
 }

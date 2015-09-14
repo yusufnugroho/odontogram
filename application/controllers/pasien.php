@@ -142,5 +142,59 @@ class Pasien extends CI_Controller {
 		$this->load->view('pasien/detail', $data);
 		$this->load->view('dashboard/footer');
 	}
+	public function perawatan($id_pasien){
+		$session[] = $this->session->userdata('akses');
+		if (!empty($session) && $session == "") redirect('welcome/logout');
+        $data['akses'] = $session[0];
 
+        $data['nama'] = $this->session->userdata('nama');
+		$data['title'] = "Perawatan Pasien";
+		$this->load->model('m_main');
+		$data['perawatan'] = $this->m_main->select_where('perawatan', array('id_pasien' => $id_pasien));
+		$data['id_pasien'] = $id_pasien;
+		$this->load->view('dashboard/header', $data);
+		$this->load->view('pasien/perawatan_index', $data);
+		$this->load->view('dashboard/footer');
+	}
+	public function perawatan_tambah($id_pasien)
+	{
+		# code...
+		$session[] = $this->session->userdata('akses');
+		if (!empty($session) && $session == "") redirect('welcome/logout');
+        $data['akses'] = $session[0];
+        $data['nama'] = $this->session->userdata('nama');;
+		$data['title'] = "Perawatan - New";
+		$data['id_pasien'] = $id_pasien;
+
+		$this->load->view('dashboard/header', $data);
+		$this->load->view('pasien/perawatan_add');
+		$this->load->view('dashboard/footer');
+	}
+	public function perawatan_add($value='')
+	{
+		$session[] = $this->session->userdata('akses');
+		if (!empty($session) && $session == "") redirect('welcome/logout');
+        $data['akses'] = $session[0];
+		$this->load->model('m_main');
+		$table = 'perawatan';
+		$nama_dokter = '-';
+		$nama_dokter = $this->session->userdata('nama_dokter');
+		$data = array(
+			'id_pasien' =>$this->input->post('id_pasien'),
+			'tanggal_perawatan' => date('Y-m-d'),
+			'gigi_perawatan' =>$this->input->post('inputGigi'),
+			'diagnosa_perawatan' =>$this->input->post('inputDiagnosa'),
+			'icd_10_perawatan' =>$this->input->post('inputICD'),
+			'perawatan_perawatan' =>$this->input->post('inputPerawatan'),
+			'nama_dokter' =>$nama_dokter,
+			'ket_perawatan' =>$this->input->post('inputKeterangan'),
+		);
+		$this->m_main->insert($table, $data);
+		$this->index();
+	}
+	public function perawatan_hapus($id_perawatan){
+		$this->load->model('m_main');
+		$this->m_main->delete('perawatan', array('id_perawatan'=>$id_perawatan));
+		redirect(base_url()."pasien");
+	}
 }
