@@ -91,30 +91,8 @@ class Pasien extends CI_Controller {
 			'AMtext' =>$this->input->post('AMtext'),
 			'foto_pasien' => $target_Path
 		);
-
-		if($this->m_main->insert($table, $data))
-		{
-			if ($target_Path != NULL) {
-				if(move_uploaded_file( $_FILES['userFile']['tmp_name'], $target_Path )){
-					echo '<script language="javascript">';
-					echo 'alert("File berhasil ditambahkan");';
-					echo '</script>';
-				}
-				else
-				{
-					echo '<script language="javascript">';
-					echo 'alert("Gagal menyimpan file");';
-					echo '</script>';
-				}
-			}
-		}
-		else
-		{
-			move_uploaded_file( $_FILES['userFile']['tmp_name'], $target_Path);
-			echo '<script language="javascript">';
-			echo 'alert("Ini bukan file");';
-			echo '</script>';
-		}
+		$this->m_main->insert($table, $data);
+		move_uploaded_file( $_FILES['userFile']['tmp_name'], $target_Path);
 		$this->index();
 	}
 	public function update()
