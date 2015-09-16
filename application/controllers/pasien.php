@@ -55,6 +55,16 @@ class Pasien extends CI_Controller {
 		if (!empty($session) && $session == "") redirect('welcome/logout');
         $data['akses'] = $session[0];
         $data['nama'] = $this->session->userdata('nama');;
+
+		$target_Path = NULL;
+		if ($_FILES['userFile']['name'] != NULL)
+		{
+			$target_Path = "assets/uploads/";
+			$string = basename( $_FILES['userFile']['name'] );
+			$string = str_replace(" ","-", $string);
+			$target_Path = $target_Path.$string;
+		}
+
 		$this->load->model('m_main');
 		$table = 'pasien';
 		$data = array(
@@ -79,9 +89,32 @@ class Pasien extends CI_Controller {
 			'AOtext' =>$this->input->post('AOtext'),
 			'AM' =>$this->input->post('inputAM'),
 			'AMtext' =>$this->input->post('AMtext'),
+			'foto_pasien' => $target_Path
 		);
 
-		$this->m_main->insert($table, $data);
+		if($this->m_main->insert($table, $data))
+		{
+			if ($target_Path != NULL) {
+				if(move_uploaded_file( $_FILES['userFile']['tmp_name'], $target_Path )){
+					echo '<script language="javascript">';
+					echo 'alert("File berhasil ditambahkan");';
+					echo '</script>';
+				}
+				else
+				{
+					echo '<script language="javascript">';
+					echo 'alert("Gagal menyimpan file");';
+					echo '</script>';
+				}
+			}
+		}
+		else
+		{
+			move_uploaded_file( $_FILES['userFile']['tmp_name'], $target_Path);
+			echo '<script language="javascript">';
+			echo 'alert("Ini bukan file");';
+			echo '</script>';
+		}
 		$this->index();
 	}
 	public function update()

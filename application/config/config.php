@@ -18,7 +18,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 |
 */
 $config['base_url'] = 'http://localhost/odontogram';
-
+$config['fonts_path']= 'system/fonts/';
 /*
 |--------------------------------------------------------------------------
 | Index File
