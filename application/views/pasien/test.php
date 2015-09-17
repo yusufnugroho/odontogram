@@ -61,7 +61,7 @@
                                             if($akses!= "dvi")
                                             {
                                                 ?>
-                                                <a href="<?php echo base_url();?>pasien/detail/<?php echo $row->id_pasien;?>" class="btn btn-sm btn-primary">Info</a>
+                                                <a href="<?php echo base_url();?>pasien/detail/<?php echo $row->id_pasien;?>" class="btn btn-sm btn-primary">Detail </a>
                                                 <?php
                                             }
                                         ?>
@@ -77,7 +77,12 @@
                                     ?>
                                     </tbody>
                                 </table>
+                                <?php
+                                if($akses=='dokter')
+                                {
+                                ?>
                                 <a href="<?php echo base_url();?>pasien/tambah" class="btn btn-primary">Tambah Pasien</a>
+                                <?php }?>
                             </div>
                             <!-- /.table-responsive -->
                         </div>

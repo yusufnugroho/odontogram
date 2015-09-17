@@ -4,7 +4,7 @@
         <div id="page-wrapper">
             <div class="row">
                 <div class="col-lg-12 col-md-offset-1">
-                    <h1 class="page-header">Detail Pasien</h1>
+                    <h1 class="page-header">Detail Dokter</h1>
                 </div>
                 <!-- /.col-lg-12 -->
             </div>
@@ -13,11 +13,11 @@
                     <div class="panel panel-primary">
                      
 
-                        <?php foreach($detail_pasien as $row){ 
+                        <?php foreach($detail_dokter as $row){ 
                             ?>
 
                         <div class="panel-heading">
-                           <h3 class="panel-title"><?php if(!empty($row['nama_pasien']))echo $row['nama_pasien']; ?> </h3>
+                           <h3 class="panel-title"><?php if(!empty($row['nama_dokter']))echo $row['nama_dokter']; ?> </h3>
                         </div>
 
                         <div class="panel-body">
@@ -27,8 +27,8 @@
 
                                         <tbody>
                                             <?php
-                                            $field      = array('nama_pasien','tempat_lahir_pasien','tanggal_lahir_pasien','jk_pasien','ktp_pasien','suku_pasien','pekerjaan_pasien','alamat_rumah_pasien','telepon_rumah_pasien','alamat_kantor_pasien','ponsel_pasien','GD','PJ','DS','HA','HS','GG','PL','AO','AOtext','AM','AMtext');
-                                            $nameField  = array('Nama Pasien','Tempat Lahir Pasien','Tanggal Lahir Pasien','Jenis Kelamin Pasien','KTP Pasien','Suku Pasien','Pekerjaan Pasien','Alamat Rumah Pasien','Telepon Rumah Pasien','Alamat Kantor Pasien','Ponsel Pasien','Golongan Darah','Penyakit Jantung','Diabetes','Haemophilia','Hepatitis','Gastring','Penyakit Lainnya','Alergi Obat','Alergi Obat - Penjelasan','Alergi Makanan','Alergi Makanan - Penjelasan');
+                                            $field      = array('id_dokter','nik_dokter','nama_dokter','alamat_dokter','alamat_praktik_dokter','telepon_dokter');
+                                            $nameField  = array('id_dokter','nik_dokter','nama_dokter','alamat_dokter','alamat_praktik_dokter','telepon_dokter');
                                                 for($j = 0;$j<count($field);$j++)
                                                 {
                                                     $value = $row[$field[$j]];    
@@ -55,7 +55,7 @@
                                             }
                                             else{
                                                 ?>
-                                                <a  class="btn btn-success" style="float:right" href="<?php echo base_url();?>pasien" >Kembali</a>   
+                                                <a  class="btn btn-success" style="float:right" href="<?php echo base_url();?>dokter" >Kembali</a>   
                                                 <?php
                                             }
                                         ?>

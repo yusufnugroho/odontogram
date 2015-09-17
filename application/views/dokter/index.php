@@ -51,6 +51,7 @@
                                             <td>
                                                 <a href="<?php echo base_url();?>dokter/ubah/<?php echo $row->id_dokter;?>" class="btn btn-sm btn-warning">Update</a>
                                                 <?php if($akses == 'admin'){?>                                               
+                                                <a href="<?php echo base_url();?>dokter/detail/<?php echo $row->id_dokter;?>" class="btn btn-sm btn-primary">Detail Dokter</a>
                                                 <a href="<?php echo base_url();?>dokter/hapus/<?php echo $row->id_dokter;?>" class="btn btn-sm btn-danger">Hapus</a>
                                                 <?php };?>
                                             </td>

@@ -82,6 +82,19 @@ class Dokter extends CI_Controller {
 		$this->m_main->insert($table, $data);
 		$this->index();
 	}
+	public function detail($id){
+        $session[] = $this->session->userdata('akses');
+		if (!empty($session) && $session == "") redirect('welcome/logout');
+        $data['akses'] = $session[0];
+        $data['nama'] = $this->session->userdata('nama');;
+		$data['title'] = "Detail Dokter";
+		$this->load->model('m_main');
+		$data['detail_dokter'] = $this->m_main->select_where('dokter', array('id_dokter' => $id));
+		$data['id_dokter'] = $id;
+		$this->load->view('dashboard/header', $data);
+		$this->load->view('dokter/detail', $data);
+		$this->load->view('dashboard/footer');
+	}
 	public function update()
 	{
         $session[] = $this->session->userdata('akses');
