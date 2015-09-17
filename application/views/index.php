@@ -37,7 +37,7 @@
                         <div class="form-body pal">
                             <div class="form-group">
                                 <label for="inputName" class="col-md-3 control-label">
-                                    Name</label>
+                                    ID/NIK</label>
                                 <div class="col-md-9">
                                     <div class="input-icon right">
                                         <i class="fa fa-user"></i>

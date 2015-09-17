@@ -11,7 +11,7 @@
             <div class="row">
                 <div class="col-lg-6 col-md-offset-1">
                     <div class="panel panel-primary">
-                     <?php// echo "Domisili Asal".$domisili; echo "Email : ".$email;?>
+                     
 
                         <?php foreach($detail_pasien as $row){ 
                             ?>
@@ -46,8 +46,20 @@
                                         </table>
                                         <?php } ?>
                                         <div class="modal-footer">
-                                            <a  class="btn btn-success" style="float:right" href="<?php echo base_url();?>pasien" >Kembali</a>
-                                           
+                                        <?php
+                                        $nik_dokter = $this->session->userdata('nik_dokter');
+                                            if(!empty($nik_dokter)){
+                                                ?>
+                                                <a  class="btn btn-success" style="float:right" href="<?php echo base_url();?>pasien/pasien_dokter/" >Kembali</a>        
+                                            <?php
+                                            }
+                                            else{
+                                                ?>
+                                                <a  class="btn btn-success" style="float:right" href="<?php echo base_url();?>pasien" >Kembali</a>   
+                                                <?php
+                                            }
+                                        ?>
+                                        
                                         </div>
 <br><br>
 </div>

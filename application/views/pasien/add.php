@@ -36,7 +36,7 @@
                                             <div class="panel-heading">
                                                 Form Tambah Pasien</div>
                                             <div class="panel-body pan">
-                                                <form action="<?php echo base_url();?>index.php/pasien/add" method="post">
+                                                <form action="<?php echo base_url();?>pasien/add" method="post">
                                                 <div class="form-body pal">
                                                     <div class="row" id="pasien_2" style="display: none">
                                                         <div class="row">

@@ -42,13 +42,17 @@
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    <?php foreach ($pasien as $row) {
+                                    <?php 
+                                        $no = 1;
+                                        foreach ($pasien as $row) {
                                     ?>  <tr>
-                                        <td><?php echo $row->id_pasien;?></td>
+                                        <td><?php echo $no;?></td>
                                         <td><?php echo $row->nama_pasien;?></td>
                                         <td><?php echo $row->ktp_pasien;?></td>
                                         <td><?php echo $row->alamat_rumah_pasien;?></td>
-                                        <td><?php echo $row->ponsel_pasien;?></td>
+                                        <td><?php echo $row->ponsel_pasien;
+                                             $no +=1;
+                                        ?></td>
                                         <td>
                                         <?php
                                              //$session[] = $this->session->userdata('akses');
@@ -69,6 +73,7 @@
                                     </tr>
                                     <?php
                                     }
+
                                     ?>
                                     </tbody>
                                 </table>

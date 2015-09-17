@@ -44,7 +44,8 @@ class Welcome extends CI_Controller {
 		if(!empty($result)){
 			$session = array(
 				'akses' => $akses,
-				'nama' => $result[0]['nama_dokter']
+				'nama' => $result[0]['nama_dokter'],
+				'nik_dokter' => $result[0]['nik_dokter'],
 			);
 			$this->session->set_userdata($session);
 			$this->load->view('dashboard/header', $session);

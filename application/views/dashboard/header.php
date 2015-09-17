@@ -58,6 +58,7 @@
                         <div class="clearfix"></div>
                         <?php
                             $session[] = $this->session->userdata('akses');
+                            $data['nik_dokter'] = $this->session->userdata('nik_dokter');
                             $data['akses'] = $session[0];
                             //echo $data['akses'];
                         ?>
@@ -65,10 +66,18 @@
                             <div class="icon-bg bg-orange"></div>
                         </i><span class="menu-title">Dashboard</span></a></li>
                         <?php
-                            if($data['akses']!='admin')
+                            if($data['akses']!='admin' && $data['akses']=='dokter'  )
                             {
+                                //echo "Seblay : ".$data['nik_dokter']."<br>";
                                ?>
-                                <li><a href="<?php echo base_url();?>pasien"><i class="fa fa-file-text-o fa-fw">
+                                <li><a href="<?php echo base_url();?>pasien/pasien_dokter"><i class="fa fa-file-text-o fa-fw">
+                                    <div class="icon-bg bg-green"></div>
+                                    </i><span class="menu-title">Pasien Saya</span></a>
+                                </li> 
+                            <?php
+                            }elseif ($data['akses']!='admin') {
+                                ?>
+                                    <li><a href="<?php echo base_url();?>pasien/"><i class="fa fa-file-text-o fa-fw">
                                         <div class="icon-bg bg-green"></div>
                                         </i><span class="menu-title">Pasien</span></a>
                                     </li> 

@@ -19,6 +19,11 @@ class M_main extends CI_Model {
 		$data = $this->db->get_where($tablename, $where);
 		return $data->result_array();
 	}
+	public function select_where2($tablename, $where)
+	{
+		$data = $this->db->get_where($tablename, $where);
+		return $data->result();
+	}
 
 	public function update($tablename, $content, $where){
 		$this->db->update($tablename, $content, $where);

@@ -22,9 +22,28 @@ class Pasien extends CI_Controller {
 		$this->load->view('pasien/test', $data);
 		$this->load->view('dashboard/footer');
 	}
-	public function tambah()
+	public function pasien_dokter()
 	{
         $session[] = $this->session->userdata('akses');
+		if (!empty($session) && $session == "") redirect('welcome/logout');
+        $data['akses'] = $session[0];
+        $data['nama'] = $this->session->userdata('nama');
+        $nik_dokter = $this->session->userdata('nik_dokter');
+		$data['title'] = "Pasien";
+		$this->load->model('m_main');
+		
+		//Select Table Pasien Where nik_dokter = $nik_dokter
+		$where = array('nik_dokter' => $nik_dokter, );
+		$data['pasien'] = $this->m_main->select_where2('pasien',$where);
+		$this->load->view('dashboard/header', $data);
+		$this->load->view('pasien/test', $data);
+		$this->load->view('dashboard/footer');
+	}
+	public function tambah()
+	{
+
+        $session[] = $this->session->userdata('akses');
+		//print_r($this->session->userdata());die();
 		if (!empty($session) && $session == "") redirect('welcome/logout');
         $data['akses'] = $session[0];
         $data['nama'] = $this->session->userdata('nama');;
@@ -56,6 +75,7 @@ class Pasien extends CI_Controller {
         $data['akses'] = $session[0];
         $data['nama'] = $this->session->userdata('nama');;
 		$this->load->model('m_main');
+		$nik_dokter = $this->session->userdata('nik_dokter');
 		$table = 'pasien';
 		$data = array(
 			'nama_pasien' => $this->input->post('nama_pasien'),
@@ -79,11 +99,21 @@ class Pasien extends CI_Controller {
 			'AOtext' =>$this->input->post('AOtext'),
 			'AM' =>$this->input->post('inputAM'),
 			'AMtext' =>$this->input->post('AMtext'),
+			'nik_dokter' => $nik_dokter,
 		);
+		$this->load->helper('url');
 
 		$this->m_main->insert($table, $data);
-		$this->index();
+
+		if(!empty($nik_dokter)){
+			redirect('pasien/pasien_dokter', 'refresh');
+		}
+		else{
+			$this->index();	
+		}		
+		
 	}
+
 	public function update()
 	{
         $session[] = $this->session->userdata('akses');
@@ -102,7 +132,13 @@ class Pasien extends CI_Controller {
 		);
 		$this->load->model('m_main');
 		$this->m_main->update('dokter',$data, $where);
-		$this->index();
+		$nik_dokter = $this->session->userdata('nik_dokter');
+		if(!empty($nik_dokter)){
+			redirect('/pasien/pasien_dokter', 'refresh');
+		}
+		else{
+			$this->index();	
+		}
 	}
 	public function record($id_pasien)
 	{
@@ -121,12 +157,20 @@ class Pasien extends CI_Controller {
 	}
 	public function hapus($id_pasien){
 		$this->load->model('m_main');
+		
 		$rekam_gigi = $this->m_main->select_where('rekam_pasien', array('id_pasien' => $id_pasien));
 		foreach ($rekam_gigi as $key) {
 			$this->m_main->delete('gigi', array('id_rekam' => $key['id_rekam']));
 		}
 		$this->m_main->delete('pasien', array('id_pasien'=>$id_pasien));
-		redirect(base_url()."pasien");
+		
+		$nik_dokter = $this->session->userdata('nik_dokter');
+		if(!empty($nik_dokter)){
+			redirect('/pasien/pasien_dokter', 'refresh');
+		}
+		else{
+			$this->index();	
+		}		
 	}
 
 	public function detail($id_pasien){
@@ -190,11 +234,23 @@ class Pasien extends CI_Controller {
 			'ket_perawatan' =>$this->input->post('inputKeterangan'),
 		);
 		$this->m_main->insert($table, $data);
-		$this->index();
+		$nik_dokter = $this->session->userdata('nik_dokter');
+		if(!empty($nik_dokter)){
+			redirect('/pasien/pasien_dokter', 'refresh');
+		}
+		else{
+			$this->index();	
+		}
 	}
 	public function perawatan_hapus($id_perawatan){
 		$this->load->model('m_main');
 		$this->m_main->delete('perawatan', array('id_perawatan'=>$id_perawatan));
-		redirect(base_url()."pasien");
+		$nik_dokter = $this->session->userdata('nik_dokter');
+		if(!empty($nik_dokter)){
+			redirect('/pasien/pasien_dokter', 'refresh');
+		}
+		else{
+			$this->index();	
+		}
 	}
 }
