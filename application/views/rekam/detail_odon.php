@@ -19,7 +19,7 @@
 					<?php
 					foreach ($permukaan_gigi as $key) {
 						?>
-						<option value="<?php echo $key->singkatan_permukaan?>"><?php echo $key->arti_permukaan;?></option>
+						<option value="<?php echo $key->arti_permukaan?>"><?php echo $key->arti_permukaan;?></option>
 						<?php
 					}
 					?>
@@ -32,7 +32,7 @@
 					<?php
 					foreach ($keadaan_gigi as $key) {
 						?>
-						<option value="<?php echo $key->singkatan_keadaan?>"><?php echo $key->singkatan_keadaan;?></option>
+						<option value="<?php echo $key->arti_keadaan?>"><?php echo $key->arti_keadaan;?></option>
 						<?php
 					}
 					?>
@@ -45,7 +45,7 @@
 					<?php
 					foreach ($bahan_restorasi as $key) {
 						?>
-						<option value="<?php echo $key->singkatan_bahan?>"><?php echo $key->arti_bahan;?></option>
+						<option value="<?php echo $key->arti_bahan?>"><?php echo $key->arti_bahan;?></option>
 						<?php
 					}
 					?>
@@ -58,7 +58,7 @@
 					<?php
 					foreach ($restorasi as $key) {
 						?>
-						<option value="<?php echo $key->singkatan_restorasi?>"><?php echo $key->arti_restorasi;?></option>
+						<option value="<?php echo $key->arti_restorasi?>"><?php echo $key->arti_restorasi;?></option>
 						<?php
 					}
 					?>
@@ -71,7 +71,7 @@
 					<?php
 					foreach ($protesa as $key) {
 						?>
-						<option value="<?php echo $key->singkatan_protesa?>"><?php echo $key->arti_protesa;?></option>
+						<option value="<?php echo $key->arti_protesa?>"><?php echo $key->arti_protesa;?></option>
 						<?php
 					}
 					?>

@@ -36,7 +36,13 @@
                                             <div class="panel-heading">
                                                 Form Tambah Pasien</div>
                                             <div class="panel-body pan">
-                                                <form action="<?php echo base_url();?>pasien/add" method="post">
+
+                                                <?php
+                                                /*Yusuf To Fadri Edit Post*/ 
+                                                //<form action="<?php echo base_url();?-->pasien/add" method="post">
+                                                ?>
+                                                <form action="<?php echo base_url();?>pasien/add" method="post" enctype="multipart/form-data">
+
                                                 <div class="form-body pal">
                                                     <div class="row" id="pasien_2" style="display: none">
                                                         <div class="row">
@@ -268,13 +274,12 @@
                                                                 <i class="fa fa-user"></i>
                                                                 <input id="inputPonsel" type="text" placeholder="No. Ponsel" class="form-control" required name="ponsel_pasien"/></div>
                                                         </div>
-                                                        <!--
                                                         <div class="form-group">
+                                                            <div> Foto Pasien</div>
                                                             <div class="input-icon right">
                                                                 <i class="fa fa-lock"></i>
-                                                                <input id="inputConfirmPassword" type="password" placeholder="Confirm Password" class="form-control" /></div>
+                                                                <input id="inputFoto" type="file" name="userFile" class="form-control" /></div>
                                                         </div>
-                                                        -->
                                                     </div>
                                                 </div>
                                                 <div class="form-actions text-right pal">

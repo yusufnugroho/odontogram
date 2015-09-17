@@ -74,6 +74,16 @@ class Pasien extends CI_Controller {
 		if (!empty($session) && $session == "") redirect('welcome/logout');
         $data['akses'] = $session[0];
         $data['nama'] = $this->session->userdata('nama');;
+
+		$target_Path = NULL;
+		if ($_FILES['userFile']['name'] != NULL)
+		{
+			$target_Path = "assets/uploads/";
+			$string = basename( $_FILES['userFile']['name'] );
+			$string = str_replace(" ","-", $string);
+			$target_Path = $target_Path.$string;
+		}
+
 		$this->load->model('m_main');
 		$nik_dokter = $this->session->userdata('nik_dokter');
 		$table = 'pasien';
@@ -99,19 +109,28 @@ class Pasien extends CI_Controller {
 			'AOtext' =>$this->input->post('AOtext'),
 			'AM' =>$this->input->post('inputAM'),
 			'AMtext' =>$this->input->post('AMtext'),
+
 			'nik_dokter' => $nik_dokter,
+		
+			'foto_pasien' => $target_Path
 		);
 		$this->load->helper('url');
 
 		$this->m_main->insert($table, $data);
 
+		
+	
+
+		$this->m_main->insert($table, $data);
+		move_uploaded_file( $_FILES['userFile']['tmp_name'], $target_Path);
 		if(!empty($nik_dokter)){
 			redirect('pasien/pasien_dokter', 'refresh');
 		}
 		else{
 			$this->index();	
 		}		
-		
+		//$this->index();
+//>>>>>>> cf39e365018e4a3c5b1ed9a8605cfd8ad7d16d04:application/controllers/pasien.php
 	}
 
 	public function update()

@@ -27,9 +27,9 @@
 
                                         <tbody>
                                             <?php
-                                            $field      = array('nama_pasien','tempat_lahir_pasien','tanggal_lahir_pasien','jk_pasien','ktp_pasien','suku_pasien','pekerjaan_pasien','alamat_rumah_pasien','telepon_rumah_pasien','alamat_kantor_pasien','ponsel_pasien','GD','PJ','DS','HA','HS','GG','PL','AO','AOtext','AM','AMtext');
-                                            $nameField  = array('Nama Pasien','Tempat Lahir Pasien','Tanggal Lahir Pasien','Jenis Kelamin Pasien','KTP Pasien','Suku Pasien','Pekerjaan Pasien','Alamat Rumah Pasien','Telepon Rumah Pasien','Alamat Kantor Pasien','Ponsel Pasien','Golongan Darah','Penyakit Jantung','Diabetes','Haemophilia','Hepatitis','Gastring','Penyakit Lainnya','Alergi Obat','Alergi Obat - Penjelasan','Alergi Makanan','Alergi Makanan - Penjelasan');
-                                                for($j = 0;$j<count($field);$j++)
+                                            $field      = array('nama_pasien','tempat_lahir_pasien','tanggal_lahir_pasien','jk_pasien','ktp_pasien','suku_pasien','pekerjaan_pasien','alamat_rumah_pasien','telepon_rumah_pasien','alamat_kantor_pasien','ponsel_pasien','GD','PJ','DS','HA','HS','GG','PL','AO','AOtext','AM','AMtext','foto_pasien');
+                                            $nameField  = array('Nama Pasien','Tempat Lahir Pasien','Tanggal Lahir Pasien','Jenis Kelamin Pasien','KTP Pasien','Suku Pasien','Pekerjaan Pasien','Alamat Rumah Pasien','Telepon Rumah Pasien','Alamat Kantor Pasien','Ponsel Pasien','Golongan Darah','Penyakit Jantung','Diabetes','Haemophilia','Hepatitis','Gastring','Penyakit Lainnya','Alergi Obat','Alergi Obat - Penjelasan','Alergi Makanan','Alergi Makanan - Penjelasan','Foto');
+                                                for($j = 0;$j<count($field)-1;$j++)
                                                 {
                                                     $value = $row[$field[$j]];    
                                                     echo "
@@ -39,6 +39,12 @@
                                                         <tr>
                                                     ";
                                                 }
+                                                echo "
+                                                    <tr>
+                                                            <td>".$nameField[22]."</td>
+                                                            <td><img src=".base_url().$row[$field[22]]."></td>
+                                                    <tr>
+                                                "
                                                 
                                             ?>
                                            
