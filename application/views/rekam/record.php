@@ -48,7 +48,6 @@
                                             <td><?php echo $no;?></td>
                                             <td><?php echo $row['tanggal_rekam'];?></td>
                                             <td>
-                                                 <a class="btn btn-primary btn-sm " style=""  href="<?php echo base_url().'laporan/create_pdf/'.$row['id_rekam']?>">Cetak PDF</a>
                                                 <div class="btn btn-warning btn-sm detail_button" style="" data-toggle="modal" data-target="#detail_modal" id="detail_<?php echo $row['id_rekam']?>">Detail</div>
                                                 <div class="btn btn-danger btn-sm hapus_button" style="" data-toggle="modal" data-target="#hapus_modal" id="hapus_<?php echo $row['id_rekam']?>">Hapus</div>
                                             </td>
@@ -88,6 +87,7 @@
                             </div>
                         </div>
                         <div class="modal-footer">
+                            <a class="btn btn-primary btn-sm cetak_pdf" style=""  href="" id = "cetak_pdf_">Cetak PDF</a>
                             <button type="button" class="btn btn-primary" data-dismiss="modal" id="modal_close">OK</button>
                         </div>
                     </div>
@@ -119,7 +119,9 @@
             <!--END HAPUS MODAL-->
             <script src="<?php echo base_url();?>assets/script/jquery-1.10.2.min.js"></script>
             <script type="text/javascript">
+                $(".cetak_pdf").hide();
                 $(".detail_button").click(function(){
+                    $(".cetak_pdf").hide();
                     var rekam_id = $(this).attr("id");
                     $("#modal_content").html("Loading ...");
                     $.post("<?php echo base_url()?>index.php/ajaxcontroller/get_detail_rekam",
@@ -129,6 +131,20 @@
                     function(data,status){
                         if (status == 'success'){
                             $("#modal_content").html(data);
+
+                            var n = data.search("Data Tidak Terisi");
+                            if(n > 10){
+                                //alert("TEST");
+
+                            }
+                            else{
+                                var href_link = "<?php echo base_url().'laporan/create_pdf/'?>";
+                                href_link = href_link+rekam_id.substr(7,rekam_id.length);
+                                $(".cetak_pdf").attr({
+                                    "href": href_link,
+                                }).show();
+
+                            }
                             $("#modal_content").show();
                         }
                     });
@@ -142,6 +158,7 @@
                 });
                 $("#modal_close").click(function(){
                     $("#modal_content").html("Loading . . . ")});
+                    $(".cetak_pdf").hide();
             </script>
 <script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
 <script src="https://cdn.datatables.net/1.10.9/js/jquery.dataTables.min.js"></script>
