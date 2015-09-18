@@ -9,7 +9,7 @@ class Laporan extends CI_Controller {
         $this->load->helper('url');
 	}
 
-	function download($id_rekam)
+	public function download($id_rekam)
 	{
 		$this->load->library('Pdf');
         $this->load->model('m_pdf');
@@ -17,7 +17,7 @@ class Laporan extends CI_Controller {
 	}
 
 	public function create_pdf($id_rekam) {
-	$this->load->library('Pdf');
+	$this->load->library('pdf');
     $this->load->model('m_pdf');
 	$data = $this->m_pdf->cetakpdf($id_rekam);
     //============================================================+

@@ -115,7 +115,7 @@ class Rekam extends CI_Controller {
 			);
 			$this->m_main->update('gigi', $update_gigi, array('id_rekam' => $_POST['id_rekam']));
 		}
-		redirect(base_url()."index.php/rekam/view_odontogram/".$_POST['id_rekam']);
+		//redirect(base_url()."index.php/rekam/view_odontogram/".$_POST['id_rekam']);
 	}
 
 	public function simpan_rekaman_gigi(){
