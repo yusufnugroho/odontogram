@@ -48,6 +48,7 @@
                                             <td><?php echo $no;?></td>
                                             <td><?php echo $row['tanggal_rekam'];?></td>
                                             <td>
+                                                 <a class="btn btn-primary btn-sm " style=""  href="<?php echo base_url().'laporan/create_pdf/'.$row['id_rekam']?>">Cetak PDF</a>
                                                 <div class="btn btn-warning btn-sm detail_button" style="" data-toggle="modal" data-target="#detail_modal" id="detail_<?php echo $row['id_rekam']?>">Detail</div>
                                                 <div class="btn btn-danger btn-sm hapus_button" style="" data-toggle="modal" data-target="#hapus_modal" id="hapus_<?php echo $row['id_rekam']?>">Hapus</div>
                                             </td>
