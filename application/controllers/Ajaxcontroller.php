@@ -26,6 +26,38 @@ class AjaxController extends CI_Controller {
 		
 		$this->load->view("rekam/detail_odon", $data);
 	}
+
+	public function detail_odon_steady(){
+		?>
+		<div class="form-body pal">
+            <div class="alert alert-warning">
+                Pilih salah satu gigi di samping!
+            </div>
+        </div>
+        <div class="form-actions text-right pal">
+            <button type="submit" class="btn btn-primary" id="detail_submit" style="display: none">
+                Tambah Detail</button>
+        </div>
+		<?php
+	}
+	public function get_notif_success(){
+		?>
+		<div class="form-body pal">
+            <div class="alert alert-success">
+                Berhasil Menambahkan Record
+            </div>
+        </div>
+		<?php
+	}
+	public function get_notif_fail(){
+		?>
+		<div class="form-body pal">
+            <div class="alert alert-danger">
+                Gagal Menambahkan Record
+            </div>
+        </div>
+		<?php
+	}
 	public function get_detail_rekam(){
 		$this->load->model('m_main');
 		$select_gigi = array(

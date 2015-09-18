@@ -212,19 +212,11 @@
                                                     <div class="panel panel-orange">
                                                         <div class="panel-heading" id="detail_title">
                                                             Form Detail Gigi</div>
-                                                        <div class="panel-body pan" id="detail_odontogram">
-                                                            <form action="<?php echo base_url();?>index.php/pasien/add" method="post">
-                                                                <div class="form-body pal">
-                                                                    <div class="alert alert-warning">
-                                                                        Pilih salah satu gigi di samping!
-                                                                    </div>
-                                                                </div>
-                                                                <div class="form-actions text-right pal">
-                                                                    <button type="submit" class="btn btn-primary" id="detail_submit" style="display: none">
-                                                                        Tambah Detail</button>
-                                                                </div>
-                                                            </form>
-                                                        </div>
+                                                        <form id="detail_odon_action">
+                                                            <div class="panel-body pan" id="detail_odontogram">
+                                                                
+                                                            </div>
+                                                        </form>
                                                     </div>
                                                 </div>
                                             </div>
@@ -246,7 +238,10 @@
             <!--END PAGE WRAPPER--> 
             <script src="<?php echo base_url();?>assets/script/jquery-1.10.2.min.js"></script>
             <script>
-
+            $("#detail_odontogram").ready(function(){
+                $("#detail_odontogram").load("<?php
+                    echo base_url().'index.php/ajaxcontroller/detail_odon_steady';
+                    ?>")});
             var next_clicked = false;
             $("#next").click(function(){
                 if (!next_clicked){
@@ -292,5 +287,40 @@
                 $("#submit").fadeIn();
                 $("#rekam_1").fadeOut();
                 $("#rekam_2").fadeIn();
+            });
+            $("#detail_odon_action").on('submit', function(e){
+                e.preventDefault();
+                var data = [
+                {
+                    "ada_gigi" : $("select[name=ada_gigi]").val(),
+                    "permukaan_gigi" : $("select[name=permukaan_gigi]").val(),
+                    "keadaan_gigi" : $("select[name=keadaan_gigi]").val(),
+                    "bahan_restorasi" : $("select[name=bahan_restorasi]").val(),
+                    "restorasi" : $("select[name=restorasi]").val(),
+                    "protesa" : $("select[name=protesa]").val(),
+                    "id_pasien" : $("input[name=id_pasien]").val(),
+                    "kode_gigi" : $("input[name=kode_gigi]").val(),
+                    "id_rekam" : $("input[name=id_rekam]").val(),
+                }];
+                var data_post = data[0];
+                $.ajax({
+                    type : "POST",
+                    url : "<?php echo base_url();?>index.php/rekam/add_kondisi_gigi",
+                    data : data_post,
+                    success: function(msg){
+                        if (msg == "1"){
+                            $("#detail_odontogram").ready(function(){
+                            $("#detail_odontogram").load("<?php
+                                echo base_url().'index.php/ajaxcontroller/get_notif_success';
+                                ?>")});
+                        }
+                        else{
+                            $("#detail_odontogram").ready(function(){
+                            $("#detail_odontogram").load("<?php
+                                echo base_url().'index.php/ajaxcontroller/get_notif_fail';
+                                ?>")});
+                        }
+                    }
+                });
             });
             </script>

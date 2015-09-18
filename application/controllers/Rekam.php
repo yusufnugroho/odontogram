@@ -109,11 +109,13 @@ class Rekam extends CI_Controller {
 				'G'.$_POST['kode_gigi'] => $detail_gigi,
 			);
 			$this->m_main->insert('gigi', $insert_gigi);
+			echo "1";
 		}else {
 			$update_gigi = array(
 				'G'.$_POST['kode_gigi'] => $detail_gigi,
 			);
 			$this->m_main->update('gigi', $update_gigi, array('id_rekam' => $_POST['id_rekam']));
+			echo "1";
 		}
 		//redirect(base_url()."index.php/rekam/view_odontogram/".$_POST['id_rekam']);
 	}

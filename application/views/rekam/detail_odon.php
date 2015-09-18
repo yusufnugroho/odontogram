@@ -1,4 +1,5 @@
-<form action="<?php echo base_url();?>index.php/rekam/add_kondisi_gigi" method="post" id="kondisi_gigi">
+<!--form action="<?php echo base_url();?>index.php/rekam/add_kondisi_gigi" method="post" id="kondisi_gigi"-->
+
     <div class="form-body pal">
     	<input type="text" hidden value="<?php echo $post['id_pasien']?>" placeholder="" name="id_pasien">
     	<input type="text" hidden value="<?php echo $post['kode_gigi']?>" placeholder="" name="kode_gigi">
@@ -83,7 +84,6 @@
         <button type="submit" class="btn btn-primary" id="detail_submit" style="display: none">
 			Tambah Detail</button>
     </div>
-</form>
 <script src="<?php echo base_url();?>assets/script/jquery-1.10.2.min.js"></script>
 <script type="text/javascript">
 $("#ada_gigi").change(function(){
