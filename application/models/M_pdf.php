@@ -70,7 +70,7 @@ class M_pdf extends CI_Model{
                     "lain_lain" => "Lain-lain"
                 );
       //query
-      $query = $this->db->query("select * from gigi, rekam_pasien, pasien where gigi.id_rekam = rekam_pasien.id_rekam and rekam_pasien.id_pasien = pasien.id_pasien and rekam_pasien.id_rekam = $id_rekam");          
+      $query = $this->db->query("select * from gigi, rekam_pasien, pasien where gigi.id_rekam = rekam_pasien.id_rekam and rekam_pasien.id_pasien = pasien.id_pasien and pasien.id_pasien = $id_rekam order by rekam_pasien.id_rekam asc");          
       $data = $query->result_array();
       return $data;
   }

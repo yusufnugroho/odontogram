@@ -57,8 +57,8 @@
                                         ?>
                                     </tbody>
                                 </table>
-                               
                                 <a href="<?php echo base_url();?>rekam/tambah/<?php echo $id_pasien?>" class="btn btn-primary">Tambah Rekam</a>
+                                <a href="<?php echo base_url();?>laporan/create_pdf/<?php echo $id_pasien?>" class="btn btn-primary">Cetak PDF</a>
                             </div>
                             <!-- /.table-responsive -->
                         </div>
@@ -119,9 +119,7 @@
             <!--END HAPUS MODAL-->
             <script src="<?php echo base_url();?>assets/script/jquery-1.10.2.min.js"></script>
             <script type="text/javascript">
-                $(".cetak_pdf").hide();
                 $(".detail_button").click(function(){
-                    $(".cetak_pdf").hide();
                     var rekam_id = $(this).attr("id");
                     $("#modal_content").html("Loading ...");
                     $.post("<?php echo base_url()?>index.php/ajaxcontroller/get_detail_rekam",
@@ -133,18 +131,6 @@
                             $("#modal_content").html(data);
 
                             var n = data.search("Data Tidak Terisi");
-                            if(n > 10){
-                                //alert("TEST");
-
-                            }
-                            else{
-                                var href_link = "<?php echo base_url().'laporan/create_pdf/'?>";
-                                href_link = href_link+rekam_id.substr(7,rekam_id.length);
-                                $(".cetak_pdf").attr({
-                                    "href": href_link,
-                                }).show();
-
-                            }
                             $("#modal_content").show();
                         }
                     });

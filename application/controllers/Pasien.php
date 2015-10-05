@@ -117,11 +117,6 @@ class Pasien extends CI_Controller {
 		$this->load->helper('url');
 
 		$this->m_main->insert($table, $data);
-
-		
-	
-
-		$this->m_main->insert($table, $data);
 		move_uploaded_file( $_FILES['userFile']['tmp_name'], $target_Path);
 		if(!empty($nik_dokter)){
 			redirect('pasien/pasien_dokter', 'refresh');

@@ -56,7 +56,7 @@ class Laporan extends CI_Controller {
     $pdf->SetKeywords('Rekam, Medis, Gigi, Pasien, Dokter');   
  
     // set default header data
-    $pdf->SetHeaderData(PDF_HEADER_LOGO, PDF_HEADER_LOGO_WIDTH, PDF_HEADER_TITLE.' 001', PDF_HEADER_STRING, array(0,64,255), array(0,64,128));
+    $pdf->SetHeaderData(PDF_HEADER_LOGO, PDF_HEADER_LOGO_WIDTH, PDF_HEADER_TITLE, PDF_HEADER_STRING, array(0,64,255), array(0,64,128));
     $pdf->setFooterData(array(0,64,0), array(0,64,128)); 
  
     // set header and footer fonts
@@ -98,6 +98,15 @@ class Laporan extends CI_Controller {
     // This method has several options, check the source code documentation for more information.
     $pdf->AddPage(); 
  
+    $identitas =
+    '<table>
+    <tr> <th> Nama: </th> <td> '.$data[0]['nama_pasien'].'</td><th>Tanggal lahir:</th><td>'.$data[0]['tanggal_lahir_pasien'].'</td></tr>
+    <tr> <th> Jenis Kelamin: </th> <td> '.$data[0]['jk_pasien'].'</td><th>Tempat lahir:</th><td>'.$data[0]['tempat_lahir_pasien'].'</td></tr>
+    <tr> <th> KTP/ SIM: </th> <td> '.$data[0]['ktp_pasien'].'</td><th>Telepon Rumah:</th><td>'.$data[0]['telepon_rumah_pasien'].'</td></tr>
+    </table>
+    <br>
+    ';
+    $pdf->writeHTML($identitas, true, false, true, false, '');
     // set text shadow effect
     $pdf->setTextShadow(array('enabled'=>true, 'depth_w'=>0.2, 'depth_h'=>0.2, 'color'=>array(196,196,196), 'opacity'=>1, 'blend_mode'=>'Normal'));    
  
@@ -105,53 +114,63 @@ class Laporan extends CI_Controller {
     $html = <<<EOD
     <h1 style='text-alignmenet:center'>Rekam Medis</h1>
 EOD;
- 	$pdf->Image(base_url().'assets/images/odontogram.jpg', 15, 38, 180, 90, 'JPG', '#', '', true, 150, '', false, false, 1, false, false, false);
+ 	$pdf->Image(base_url().'assets/images/odontogram.jpg', 15, 63, 180, 90, 'JPG', '#', '', true, 150, '', false, false, 1, false, false, false);
     // Print text using writeHTMLCell()
     $pdf->writeHTMLCell(0, 0, '', '', $html, 0, 1, 0, true, '', true);  
  	//print_r($data); 
 	// create some HTML content
-$htmla = '<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+$htmla = '<style>
+    td {
+        border: 2px solid black;
+        background-color: #ffffee;
+    }
+    th {
+        border: 2px solid black;
+        background-color: #ffffee;
+    }
+    </style>
 <table>
-	<tr> <th> Nama </th> <td> '.$data[0]['nama_pasien'].'</td><td></td><td></td></tr>
-	<tr> <th> ID Rekam </th> <td> '.$data[0]['id_rekam'].'</td><td></td><td></td></tr>
-	<tr> <td colspan=4></td> </tr>
-	<tr> <td colspan=4>Gigi 1 dan 2</td> </tr>
-	<tr> <th> G11 </th> <td> '.$data[0]['G11'].'</td> <th> G21 </th> <td> '.$data[0]['G21'].'</td></tr>
-	<tr> <th> G12 </th> <td> '.$data[0]['G12'].'</td> <th> G22 </th> <td> '.$data[0]['G22'].'</td></tr>
-	<tr> <th> G13 </th> <td> '.$data[0]['G13'].'</td> <th> G23 </th> <td> '.$data[0]['G23'].'</td></tr>
-	<tr> <th> G14 </th> <td> '.$data[0]['G14'].'</td> <th> G24 </th> <td> '.$data[0]['G24'].'</td></tr>
-	<tr> <th> G15 </th> <td> '.$data[0]['G15'].'</td> <th> G25 </th> <td> '.$data[0]['G25'].'</td></tr>
-	<tr> <th> G16 </th> <td> '.$data[0]['G16'].'</td> <th> G26 </th> <td> '.$data[0]['G26'].'</td></tr>
-	<tr> <th> G17 </th> <td> '.$data[0]['G17'].'</td> <th> G27 </th> <td> '.$data[0]['G27'].'</td></tr>
-	<tr> <th> G18 </th> <td> '.$data[0]['G18'].'</td> <th> G28 </th> <td> '.$data[0]['G28'].'</td></tr>
-	<tr> <td colspan=4></td> </tr>
-	<tr> <td colspan=4>Gigi 3 dan 4</td> </tr>
-	<tr> <th> G31 </th> <td> '.$data[0]['G31'].'</td> <th> G41 </th> <td> '.$data[0]['G41'].'</td></tr>
-	<tr> <th> G32 </th> <td> '.$data[0]['G32'].'</td> <th> G42 </th> <td> '.$data[0]['G42'].'</td></tr>
-	<tr> <th> G33 </th> <td> '.$data[0]['G33'].'</td> <th> G43 </th> <td> '.$data[0]['G43'].'</td></tr>
-	<tr> <th> G34 </th> <td> '.$data[0]['G34'].'</td> <th> G44 </th> <td> '.$data[0]['G44'].'</td></tr>
-	<tr> <th> G35 </th> <td> '.$data[0]['G35'].'</td> <th> G45 </th> <td> '.$data[0]['G45'].'</td></tr>
-	<tr> <th> G36 </th> <td> '.$data[0]['G36'].'</td> <th> G46 </th> <td> '.$data[0]['G46'].'</td></tr>
-	<tr> <th> G37 </th> <td> '.$data[0]['G37'].'</td> <th> G47 </th> <td> '.$data[0]['G47'].'</td></tr>
-	<tr> <th> G38 </th> <td> '.$data[0]['G38'].'</td> <th> G48 </th> <td> '.$data[0]['G48'].'</td></tr>
-	<tr> <td colspan=4></td> </tr>
-	<tr> <td colspan=4>Gigi 5 dan 6</td> </tr>
-	<tr> <th> G51 </th> <td> '.$data[0]['G51'].'</td> <th> G61 </th> <td> '.$data[0]['G61'].'</td></tr>
-	<tr> <th> G52 </th> <td> '.$data[0]['G52'].'</td> <th> G62 </th> <td> '.$data[0]['G62'].'</td></tr>
-	<tr> <th> G53 </th> <td> '.$data[0]['G53'].'</td> <th> G63 </th> <td> '.$data[0]['G63'].'</td></tr>
-	<tr> <th> G54 </th> <td> '.$data[0]['G54'].'</td> <th> G64 </th> <td> '.$data[0]['G64'].'</td></tr>
-	<tr> <th> G55 </th> <td> '.$data[0]['G55'].'</td> <th> G65 </th> <td> '.$data[0]['G65'].'</td></tr>
-	<tr> <td colspan=4></td> </tr>
-	<tr> <td colspan=4>Gigi 6 dan 7</td> </tr>
-	<tr> <th> G71 </th> <td> '.$data[0]['G71'].'</td> <th> G81 </th> <td> '.$data[0]['G81'].'</td></tr>
-	<tr> <th> G72 </th> <td> '.$data[0]['G72'].'</td> <th> G82 </th> <td> '.$data[0]['G82'].'</td></tr>
-	<tr> <th> G73 </th> <td> '.$data[0]['G73'].'</td> <th> G83 </th> <td> '.$data[0]['G83'].'</td></tr>
-	<tr> <th> G74 </th> <td> '.$data[0]['G74'].'</td> <th> G84 </th> <td> '.$data[0]['G84'].'</td></tr>
-	<tr> <th> G75 </th> <td> '.$data[0]['G75'].'</td> <th> G85 </th> <td> '.$data[0]['G85'].'</td></tr>
-</table>';
+    ';
+    $count = 1;
+foreach ($data as $row) {
+        # code...
+    $htmla.= '<br pagebreak="true">Rekam Ke-'.$count.'<br>Tanggal Rekam: '.$row['tanggal_rekam'].'<br>
+    <br> Gigi 1 dan 2<br>
+    <tr> <th> 11 </th> <td> '.$row['G11'].'</td> <th> 21 </th> <td> '.$row['G21'].'</td></tr>
+    <tr> <th> 12 </th> <td> '.$row['G12'].'</td> <th> 22 </th> <td> '.$row['G22'].'</td></tr>
+    <tr> <th> 13 </th> <td> '.$row['G13'].'</td> <th> 23 </th> <td> '.$row['G23'].'</td></tr>
+    <tr> <th> 14 </th> <td> '.$row['G14'].'</td> <th> 24 </th> <td> '.$row['G24'].'</td></tr>
+    <tr> <th> 15 </th> <td> '.$row['G15'].'</td> <th> 25 </th> <td> '.$row['G25'].'</td></tr>
+    <tr> <th> 16 </th> <td> '.$row['G16'].'</td> <th> 26 </th> <td> '.$row['G26'].'</td></tr>
+    <tr> <th> 17 </th> <td> '.$row['G17'].'</td> <th> 27 </th> <td> '.$row['G27'].'</td></tr>
+    <tr> <th> 18 </th> <td> '.$row['G18'].'</td> <th> 28 </th> <td> '.$row['G28'].'</td></tr>
+    <br>Gigi 4 dan 3<br>
+    <tr> <th> 41 </th> <td> '.$row['G41'].'</td> <th> 31 </th> <td> '.$row['G31'].'</td></tr>
+    <tr> <th> 42 </th> <td> '.$row['G42'].'</td> <th> 32 </th> <td> '.$row['G32'].'</td></tr>
+    <tr> <th> 43 </th> <td> '.$row['G43'].'</td> <th> 33 </th> <td> '.$row['G33'].'</td></tr>
+    <tr> <th> 44 </th> <td> '.$row['G44'].'</td> <th> 34 </th> <td> '.$row['G34'].'</td></tr>
+    <tr> <th> 45 </th> <td> '.$row['G45'].'</td> <th> 35 </th> <td> '.$row['G35'].'</td></tr>
+    <tr> <th> 46 </th> <td> '.$row['G46'].'</td> <th> 36 </th> <td> '.$row['G36'].'</td></tr>
+    <tr> <th> 47 </th> <td> '.$row['G47'].'</td> <th> 37 </th> <td> '.$row['G37'].'</td></tr>
+    <tr> <th> 48 </th> <td> '.$row['G48'].'</td> <th> 38 </th> <td> '.$row['G38'].'</td></tr>
+    <br> Gigi 5 dan 6 <br>
+    <tr> <th> 51 </th> <td> '.$row['G51'].'</td> <th> 61 </th> <td> '.$row['G61'].'</td></tr>
+    <tr> <th> 52 </th> <td> '.$row['G52'].'</td> <th> 62 </th> <td> '.$row['G62'].'</td></tr>
+    <tr> <th> 53 </th> <td> '.$row['G53'].'</td> <th> 63 </th> <td> '.$row['G63'].'</td></tr>
+    <tr> <th> 54 </th> <td> '.$row['G54'].'</td> <th> 64 </th> <td> '.$row['G64'].'</td></tr>
+    <tr> <th> 55 </th> <td> '.$row['G55'].'</td> <th> 65 </th> <td> '.$row['G65'].'</td></tr>
+    <br> Gigi 8 dan 7 <br>
+    <tr> <th> 81 </th> <td> '.$row['G81'].'</td> <th> 71 </th> <td> '.$row['G71'].'</td></tr>
+    <tr> <th> 82 </th> <td> '.$row['G82'].'</td> <th> 72 </th> <td> '.$row['G72'].'</td></tr>
+    <tr> <th> 83 </th> <td> '.$row['G83'].'</td> <th> 73 </th> <td> '.$row['G73'].'</td></tr>
+    <tr> <th> 84 </th> <td> '.$row['G84'].'</td> <th> 74 </th> <td> '.$row['G74'].'</td></tr>
+    <tr> <th> 85 </th> <td> '.$row['G85'].'</td> <th> 75 </th> <td> '.$row['G75'].'</td></tr>'.
+$pdf->lastPage();$count++;;
 
+    }
+$htmlafooter = '</table>';
 // output the HTML content
-$pdf->writeHTML($htmla, true, false, true, false, '');
+$pdf->writeHTML($htmla . $htmlafooter, true, false, true, false, '');
 
     // ---------------------------------------------------------    
  
