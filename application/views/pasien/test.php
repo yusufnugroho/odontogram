@@ -61,12 +61,12 @@
                                             if($akses!= "dvi")
                                             {
                                                 ?>
-                                                <a href="<?php echo base_url();?>pasien/detail/<?php echo $row->id_pasien;?>" class="btn btn-sm btn-primary">Detail </a>
+                                                <a href="<?php echo base_url();?>pasien/detail/<?php echo $row->id_pasien;?>" class="btn btn-sm btn-primary">Identitas</a>
                                                 <?php
                                             }
                                         ?>
                                             <a href="<?php echo base_url();?>pasien/perawatan/<?php echo $row->id_pasien;?>" class="btn btn-sm btn-warning">Perawatan</a>
-                                            <a href="<?php echo base_url();?>rekam/record/<?php echo $row->id_pasien;?>" class="btn btn-sm btn-warning">Record</a>
+                                            <a href="<?php echo base_url();?>rekam/record/<?php echo $row->id_pasien;?>" class="btn btn-sm btn-warning">Odontogram</a>
                                             <a href="<?php echo base_url();?>pasien/hapus/<?php echo $row->id_pasien;?>" class="btn btn-sm btn-danger">Hapus</a>
                                         
                                         </td>
