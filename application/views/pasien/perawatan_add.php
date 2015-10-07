@@ -1,5 +1,7 @@
-
-            <div id="page-wrapper">
+<link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+<script src="//code.jquery.com/jquery-1.10.2.js"></script>
+<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+              <div id="page-wrapper">
                 <!--BEGIN TITLE & BREADCRUMB PAGE-->
                 <div id="title-breadcrumb-option-demo" class="page-title-breadcrumb">
                     <div class="page-header pull-left">
@@ -48,7 +50,12 @@
                                                     <div class="form-group">
                                                         <div class="input-icon right">
                                                             <i class="fa fa-stethoscope"></i>
-                                                            <input id="inputDiagnosa" type="text" placeholder="Keluhan/Diagnosa" class="form-control" name="inputDiagnosa"/></div>
+                                                            <input id="inputKeluhan" type="text" placeholder="Keluhan" class="form-control" name="inputKeluhan"/></div>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <div class="input-icon right">
+                                                            <i class="fa fa-stethoscope"></i>
+                                                            <input id="inputDiagnosa" type="text" placeholder="Diagnosa" class="form-control" name="inputDiagnosa"/></div>
                                                     </div>
                                                     <div class="form-group">
                                                         <div class="input-icon right">
@@ -89,3 +96,21 @@
                 <!--END FOOTER-->
             </div>
             <!--END PAGE WRAPPER--> 
+            <script type="text/javascript">
+            $(function(){
+            <?php
+                $to_js = 'data_diagnosa = [';
+                for ($a=0; $a<count($res_diagnosa); $a++){
+                    $to_js = $to_js . "\"".$res_diagnosa[$a]->nama_diagnosa."/".$res_diagnosa[$a]->info."\"";
+                    if ($a+1 <count($res_diagnosa)){
+                        $to_js = $to_js . " , ";
+                    }
+                }
+                $to_js = $to_js . ']';
+                echo $to_js;
+                ?>;
+                $("#inputDiagnosa").autocomplete({
+                    source : data_diagnosa,
+                });
+            });
+            </script>

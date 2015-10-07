@@ -1,0 +1,19 @@
+
+1. Field Keluhan dan Diagnosa dipisah (kecil)
+2. Diagnosa (+ others) autocomplete (besar)
+-3. Change Password DVI 
+-4. Rename "Record" ke "Odontogram"
+5. Cetak Data Pasien (Perawatan, Record, Identitas) (besar)
+	urutan :
+		a. identitas
+		b. odontogram
+		c. tabel perawatan
+
+-6. Rename "Detail" ke "Identitas"
+7. 
+
+
+kecil : 10 * 1
+besar : 70 * 2
+
+Kamis

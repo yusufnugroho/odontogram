@@ -223,6 +223,8 @@ class Pasien extends CI_Controller {
         $data['nama'] = $this->session->userdata('nama');;
 		$data['title'] = "Perawatan - New";
 		$data['id_pasien'] = $id_pasien;
+		$this->load->model('m_main');
+		$data['res_diagnosa'] = $this->m_main->getall('lib_diagnosa');
 
 		$this->load->view('dashboard/header', $data);
 		$this->load->view('pasien/perawatan_add');
@@ -230,6 +232,8 @@ class Pasien extends CI_Controller {
 	}
 	public function perawatan_add($value='')
 	{
+		print_r($_POST);
+		die();
 		$session[] = $this->session->userdata('akses');
 		if (!empty($session) && $session == "") redirect('welcome/logout');
         $data['akses'] = $session[0];
@@ -241,6 +245,7 @@ class Pasien extends CI_Controller {
 			'id_pasien' =>$this->input->post('id_pasien'),
 			'tanggal_perawatan' => date('Y-m-d'),
 			'gigi_perawatan' =>$this->input->post('inputGigi'),
+			'keluhan_perawatan' =>$this->input->post('inputKeluhan'),
 			'diagnosa_perawatan' =>$this->input->post('inputDiagnosa'),
 			'icd_10_perawatan' =>$this->input->post('inputICD'),
 			'perawatan_perawatan' =>$this->input->post('inputPerawatan'),

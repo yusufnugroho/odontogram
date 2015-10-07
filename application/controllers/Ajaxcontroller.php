@@ -76,4 +76,18 @@ class AjaxController extends CI_Controller {
 		$this->load->view("pasien/detail_perawatan", $data);
 
 	}
+	public function get_diagnosa(){
+		
+		//$string = $_REQUEST['q'];
+		$this->load->model('m_main');
+		//$res_diagnosa = $this->m_main->autoComplete_diagnosa($string);
+		$res_diagnosa = $this->m_main->getall('lib_diagnosa');
+		$to_send = array();
+		for($a = 0; $a < count($res_diagnosa); $a++){
+			//$res_diagnosa[$a]->nama_diagnosa = $res_diagnosa[$a]->nama_diagnosa."/".$res_diagnosa[$a]->info;
+			array_push($to_send, $res_diagnosa[$a]->nama_diagnosa."/ ".$res_diagnosa[$a]->info);
+		}
+		print_r($to_send[0]);
+		echo json_encode($to_send);
+	}
 }

@@ -38,4 +38,10 @@ class M_main extends CI_Model {
 		$this->db->where($where);
 		$this->db->delete($tablename);
 	}
+
+	public function autoComplete_diagnosa($string){
+		$sql = "SELECT * FROM lib_diagnosa WHERE nama_diagnosa LIKE '%$string%' OR info LIKE '%$string%' ";
+		echo $sql;
+		return $this->db->query($sql)->result();
+	}
 }
