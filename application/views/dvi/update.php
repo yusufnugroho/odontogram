@@ -70,7 +70,7 @@
                                                     <label>Password</label>
                                                         <div class="input-icon right">
                                                             <i class="fa fa-lock"></i>
-                                                            <input id="inputPassword" type="password" value="password" class="form-control" name="password_dokter" /></div>
+                                                            <input id="inputPassword" type="password" value="password" class="form-control" name="password_dvi" /></div>
                                                     </div>
                                                 </div>
                                                 <input type="hidden" name='id_dokter' value="<?php echo $row['id_dvi'];?>"/>
