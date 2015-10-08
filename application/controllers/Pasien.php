@@ -18,6 +18,7 @@ class Pasien extends CI_Controller {
 		$data['title'] = "Pasien";
 		$this->load->model('m_main');
 		$data['pasien'] = $this->m_main->getall('pasien');
+
 		$this->load->view('dashboard/header', $data);
 		$this->load->view('pasien/test', $data);
 		$this->load->view('dashboard/footer');
@@ -36,7 +37,7 @@ class Pasien extends CI_Controller {
 		$where = array('nik_dokter' => $nik_dokter, );
 		$data['pasien'] = $this->m_main->select_where2('pasien',$where);
 		$this->load->view('dashboard/header', $data);
-		$this->load->view('pasien/test', $data);
+		$this->load->view('pasien/test2', $data);
 		$this->load->view('dashboard/footer');
 	}
 	public function tambah()
@@ -232,8 +233,6 @@ class Pasien extends CI_Controller {
 	}
 	public function perawatan_add($value='')
 	{
-		print_r($_POST);
-		die();
 		$session[] = $this->session->userdata('akses');
 		if (!empty($session) && $session == "") redirect('welcome/logout');
         $data['akses'] = $session[0];
