@@ -69,12 +69,12 @@
  * Deafult image logo used be the default Header() method.
  * Please set here your own logo or an empty string to disable it.
  */
-//define ('PDF_HEADER_LOGO', '');
+define ('PDF_HEADER_LOGO', 'Universitas_Airlangga.png');
 
 /**
  * Header logo image width in user units.
  */
-//define ('PDF_HEADER_LOGO_WIDTH', 0);
+define ('PDF_HEADER_LOGO_WIDTH',20);
 
 /**
  * Cache directory for temporary files (full path).
@@ -109,12 +109,12 @@ define ('PDF_AUTHOR', 'Yusuf & Friends');
 /**
  * Header title.
  */
-define ('PDF_HEADER_TITLE', 'Dental Record');
+define ('PDF_HEADER_TITLE', "Electronic Dental Record Database\nBased on Website");
 
 /**
  * Header description string.
  */
-define ('PDF_HEADER_STRING', "by Yusuf Nugroho & friends \nwww.yusufnugroho.com");
+define ('PDF_HEADER_STRING', "Departemen Odontologi Forensik - FKG\nUniversitas Airlangga.");
 
 /**
  * Document unit of measure [pt=point, mm=millimeter, cm=centimeter, in=inch].

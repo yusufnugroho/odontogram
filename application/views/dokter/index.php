@@ -24,7 +24,7 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-lg-8 col-md-offset-1">
+                <div class="col-lg-10 col-md-offset-1">
                     <div class="panel panel-success">
                         <div class="panel-heading">Daftar Dokter</div>
                         <!-- /.panel-heading -->
@@ -51,7 +51,7 @@
                                             <td>
                                                 <a href="<?php echo base_url();?>dokter/ubah/<?php echo $row->id_dokter;?>" class="btn btn-sm btn-warning">Update</a>
                                                 <?php if($akses == 'admin'){?>                                               
-                                                <a href="<?php echo base_url();?>dokter/detail/<?php echo $row->id_dokter;?>" class="btn btn-sm btn-primary">Detail Dokter</a>
+                                                <a href="<?php echo base_url();?>dokter/detail/<?php echo $row->id_dokter;?>" class="btn btn-sm btn-primary">Identitas Dokter</a>
                                                 <a href="<?php echo base_url();?>dokter/hapus/<?php echo $row->id_dokter;?>" class="btn btn-sm btn-danger">Hapus</a>
                                                 <?php };?>
                                             </td>
